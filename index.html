@@ -1,0 +1,1343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chandru Travels | Tours, Trips &amp; Travel Services</title>
+<meta name="description" content="Chandru Travels offers reliable tour packages, family trips, corporate travel, outstation cabs and airport transfers. Book instantly on WhatsApp.">
+<meta name="theme-color" content="#0B2545">
+
+<!-- Open Graph -->
+<meta property="og:title" content="Chandru Travels | Explore the World with Confidence">
+<meta property="og:description" content="Comfortable, reliable travel services — tour packages, family trips, outstation cabs, corporate travel and more. Book on WhatsApp in one tap.">
+<meta property="og:type" content="website">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- Icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<style>
+/* ============================================================
+   CHANDRU TRAVELS — DESIGN TOKENS
+   Palette:  Navy #0B2545 · Blue #145DA0 · Bright Blue #2E86DE
+             Sky #EAF4FC · White #FFFFFF · Gold #F2A93B
+   Type:     Display = Fraunces · Body = Inter · Mono = JetBrains Mono
+   Signature: "Boarding pass" ticket cards + horizon-line dividers
+   ============================================================ */
+
+:root{
+  --navy:        #0B2545;
+  --navy-2:      #123566;
+  --blue:        #145DA0;
+  --blue-bright: #2E86DE;
+  --sky:         #EAF4FC;
+  --sky-2:       #DCEEFC;
+  --white:       #FFFFFF;
+  --gold:        #F2A93B;
+  --gold-dark:   #D98E1E;
+  --ink:         #0F2438;
+  --gray:        #5B7083;
+  --gray-light:  #94A7B8;
+  --whatsapp:    #25D366;
+  --whatsapp-dark:#1DA851;
+
+  --radius-sm: 10px;
+  --radius-md: 18px;
+  --radius-lg: 28px;
+
+  --shadow-sm: 0 4px 16px rgba(11,37,69,.08);
+  --shadow-md: 0 14px 34px rgba(11,37,69,.13);
+  --shadow-lg: 0 26px 60px rgba(11,37,69,.20);
+
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-body: 'Inter', -apple-system, Segoe UI, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Courier New', monospace;
+
+  --nav-h: 78px;
+  --container: 1200px;
+}
+
+/* ============== RESET ============== */
+*,*::before,*::after{ box-sizing:border-box; }
+html{ scroll-behavior:smooth; }
+body{
+  margin:0;
+  font-family:var(--font-body);
+  color:var(--ink);
+  background:var(--white);
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+img{ max-width:100%; display:block; }
+a{ color:inherit; text-decoration:none; }
+ul{ list-style:none; margin:0; padding:0; }
+h1,h2,h3,h4{ font-family:var(--font-display); margin:0 0 .5em; line-height:1.15; color:var(--navy); }
+p{ margin:0 0 1em; }
+button{ font-family:inherit; cursor:pointer; }
+section{ scroll-margin-top: var(--nav-h); }
+
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{ animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; scroll-behavior:auto !important; }
+}
+
+.skip-link{
+  position:absolute; left:-999px; top:0; background:var(--navy); color:#fff;
+  padding:.75rem 1.25rem; z-index:2000; border-radius:0 0 8px 0;
+}
+.skip-link:focus{ left:0; }
+
+:focus-visible{ outline:3px solid var(--gold); outline-offset:2px; }
+
+.container{ width:100%; max-width:var(--container); margin:0 auto; padding:0 24px; }
+
+/* ============== TYPO HELPERS ============== */
+.eyebrow{
+  font-family:var(--font-mono); text-transform:uppercase; letter-spacing:.14em;
+  font-size:.78rem; font-weight:600; color:var(--blue); margin:0 0 .9rem;
+}
+.eyebrow--light{ color:var(--gold); }
+.section__title{ font-size:clamp(1.7rem,3.6vw,2.6rem); font-weight:600; }
+.section__lead{ color:var(--gray); font-size:1.05rem; max-width:640px; }
+.section__head{ max-width:720px; margin-bottom:3rem; }
+
+.section{ padding:6rem 0; }
+.section--sky{ background:var(--sky); }
+
+/* ============== BUTTONS ============== */
+.btn{
+  display:inline-flex; align-items:center; justify-content:center; gap:.55rem;
+  padding:.9rem 1.7rem; border-radius:50px; font-weight:600; font-size:.96rem;
+  border:2px solid transparent; transition:transform .2s ease, box-shadow .2s ease, background .2s ease, color .2s ease;
+  white-space:nowrap;
+}
+.btn:hover{ transform:translateY(-2px); }
+.btn--primary{ background:var(--blue); color:#fff; box-shadow:var(--shadow-sm); }
+.btn--primary:hover{ background:var(--blue-bright); box-shadow:var(--shadow-md); }
+.btn--whatsapp{ background:var(--whatsapp); color:#fff; box-shadow:0 10px 24px rgba(37,211,102,.35); }
+.btn--whatsapp:hover{ background:var(--whatsapp-dark); }
+.btn--gold{ background:var(--gold); color:var(--navy); box-shadow:0 10px 24px rgba(242,169,59,.35); }
+.btn--gold:hover{ background:var(--gold-dark); color:#fff; }
+.btn--ghost{ background:rgba(255,255,255,.08); color:#fff; border-color:rgba(255,255,255,.55); backdrop-filter:blur(4px); }
+.btn--ghost:hover{ background:rgba(255,255,255,.18); border-color:#fff; }
+.btn--outline{ background:transparent; color:var(--blue); border-color:var(--blue); }
+.btn--outline:hover{ background:var(--blue); color:#fff; }
+.btn--lg{ padding:1.05rem 2.1rem; font-size:1.02rem; }
+.btn--sm{ padding:.55rem 1.15rem; font-size:.85rem; }
+.btn--block{ width:100%; }
+
+/* ============== NAVBAR ============== */
+.navbar{
+  position:fixed; top:0; left:0; right:0; z-index:1000;
+  height:var(--nav-h); display:flex; align-items:center;
+  background:rgba(255,255,255,0); transition:background .3s ease, box-shadow .3s ease, height .3s ease;
+}
+.navbar.scrolled{
+  background:rgba(255,255,255,.92); backdrop-filter:blur(10px);
+  box-shadow:0 4px 24px rgba(11,37,69,.08); height:68px;
+}
+.navbar__inner{ display:flex; align-items:center; justify-content:space-between; }
+
+.brand{ display:flex; align-items:center; gap:.6rem; }
+.brand__mark{ color:var(--gold); display:flex; }
+.navbar:not(.scrolled) .brand__mark{ color:var(--gold); }
+.navbar.scrolled .brand__mark{ color:var(--blue); }
+.brand__text{
+  font-family:var(--font-display); font-weight:600; font-size:1.35rem;
+  color:#fff; letter-spacing:.01em;
+}
+.navbar.scrolled .brand__text{ color:var(--navy); }
+.brand__text em{ font-style:normal; color:var(--gold); }
+.brand__text--light{ color:#fff; }
+.brand__text--light em{ color:var(--gold); }
+
+.nav-links{ display:none; align-items:center; gap:2rem; }
+.nav-link{
+  font-weight:500; font-size:.95rem; color:#fff; position:relative; padding:.25rem 0;
+}
+.navbar.scrolled .nav-link{ color:var(--ink); }
+.nav-link::after{
+  content:""; position:absolute; left:0; bottom:-4px; width:0; height:2px; background:var(--gold);
+  transition:width .25s ease;
+}
+.nav-link:hover::after, .nav-link.active::after{ width:100%; }
+
+.hamburger{
+  display:flex; flex-direction:column; justify-content:center; gap:5px;
+  width:42px; height:42px; background:rgba(255,255,255,.12); border:none; border-radius:10px;
+}
+.navbar.scrolled .hamburger{ background:rgba(11,37,69,.06); }
+.hamburger span{ display:block; width:20px; height:2px; margin:0 auto; background:#fff; transition:.3s; }
+.navbar.scrolled .hamburger span{ background:var(--navy); }
+.hamburger[aria-expanded="true"] span:nth-child(1){ transform:translateY(7px) rotate(45deg); }
+.hamburger[aria-expanded="true"] span:nth-child(2){ opacity:0; }
+.hamburger[aria-expanded="true"] span:nth-child(3){ transform:translateY(-7px) rotate(-45deg); }
+
+@media (min-width:960px){
+  .nav-links{ display:flex; }
+  .hamburger{ display:none; }
+}
+
+/* ============== OFFCANVAS (MOBILE MENU) ============== */
+.offcanvas{ position:fixed; inset:0; z-index:1400; visibility:hidden; }
+.offcanvas__backdrop{ position:absolute; inset:0; background:rgba(11,37,69,.55); opacity:0; transition:opacity .3s ease; }
+.offcanvas__panel{
+  position:absolute; top:0; right:0; height:100%; width:min(340px,86vw);
+  background:#fff; box-shadow:-20px 0 50px rgba(11,37,69,.25);
+  transform:translateX(100%); transition:transform .35s ease;
+  padding:1.6rem 1.6rem 2rem; display:flex; flex-direction:column; gap:1.6rem;
+}
+.offcanvas.open{ visibility:visible; }
+.offcanvas.open .offcanvas__backdrop{ opacity:1; }
+.offcanvas.open .offcanvas__panel{ transform:translateX(0); }
+.offcanvas__top{ display:flex; align-items:center; justify-content:space-between; }
+.offcanvas__close{ background:var(--sky); border:none; width:38px; height:38px; border-radius:10px; font-size:1rem; color:var(--navy); }
+.offcanvas__links{ display:flex; flex-direction:column; gap:.2rem; }
+.offcanvas__link{ padding:.85rem .2rem; border-bottom:1px solid var(--sky-2); font-weight:600; color:var(--ink); font-size:1.05rem; }
+.offcanvas__contact{ margin-top:auto; padding-top:1rem; border-top:1px solid var(--sky-2); }
+.offcanvas__contact a{ display:flex; align-items:center; gap:.5rem; color:var(--gray); font-weight:500; }
+
+/* ============== HERO ============== */
+.hero{ position:relative; min-height:100vh; display:flex; align-items:center; overflow:hidden; color:#fff; }
+.hero__bg{
+  position:absolute; inset:0; background-size:cover; background-position:center;
+  transform:scale(1.06);
+}
+.hero__overlay{
+  position:absolute; inset:0;
+  background:
+    linear-gradient(180deg, rgba(6,22,44,.75) 0%, rgba(11,37,69,.68) 45%, rgba(11,37,69,.92) 100%),
+    linear-gradient(100deg, rgba(11,37,69,.55), rgba(20,93,160,.25));
+}
+.hero__inner{ position:relative; z-index:2; padding-top:calc(var(--nav-h) + 2.5rem); padding-bottom:6rem; }
+.hero__title{ color:#fff; font-size:clamp(2.2rem,6vw,4rem); font-weight:600; max-width:820px; }
+.hero__title span{ color:var(--gold); }
+.hero__desc{ color:rgba(255,255,255,.86); font-size:1.12rem; max-width:600px; margin-bottom:2.1rem; }
+.hero__cta{ display:flex; flex-wrap:wrap; gap:1rem; margin-bottom:3.2rem; }
+.hero__stats{ display:flex; flex-wrap:wrap; gap:2.4rem; }
+.hero__stats div{ display:flex; flex-direction:column; }
+.hero__stats strong{ font-family:var(--font-display); font-size:1.9rem; color:var(--gold); }
+.hero__stats span{ color:rgba(255,255,255,.75); font-size:.85rem; text-transform:uppercase; letter-spacing:.06em; }
+
+.hero__horizon{ position:absolute; left:0; right:0; bottom:-2px; width:100%; height:80px; z-index:2; }
+
+/* ============== ABOUT ============== */
+.about{ display:grid; grid-template-columns:1fr; gap:3rem; align-items:center; padding-bottom:5rem; }
+.about__media{ position:relative; }
+.about__media img{ width:100%; border-radius:var(--radius-lg); box-shadow:var(--shadow-lg); aspect-ratio:9/10; object-fit:cover; }
+.about__badge{
+  position:absolute; left:-14px; bottom:-20px; background:#fff; border-radius:var(--radius-md);
+  box-shadow:var(--shadow-md); padding:1rem 1.3rem; display:flex; align-items:center; gap:.8rem;
+  max-width:230px;
+}
+.about__badge i{ font-size:1.4rem; color:var(--whatsapp); }
+.about__badge strong{ display:block; font-family:var(--font-display); font-size:1.1rem; color:var(--navy); }
+.about__badge span{ font-size:.78rem; color:var(--gray); }
+
+.checklist{ margin:1.5rem 0 2rem; display:flex; flex-direction:column; gap:.7rem; }
+.checklist li{ display:flex; align-items:flex-start; gap:.6rem; color:var(--ink); }
+.checklist i{ color:var(--blue-bright); margin-top:.2rem; }
+
+/* Departure-board stat strip */
+.stat-strip{ background:var(--navy); margin-top:1rem; }
+.stat-strip__grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:2rem; padding:2.6rem 24px; }
+.stat{ text-align:center; border-left:1px dashed rgba(255,255,255,.18); padding-left:1rem; }
+.stat:first-child{ border-left:none; padding-left:0; }
+.stat__num{
+  display:block; font-family:var(--font-mono); font-weight:700; font-size:clamp(1.6rem,4vw,2.4rem);
+  color:var(--gold); letter-spacing:.02em;
+}
+.stat__label{ display:block; margin-top:.35rem; font-size:.78rem; color:rgba(255,255,255,.7); text-transform:uppercase; letter-spacing:.08em; }
+
+/* ============== GRID ============== */
+.grid{ display:grid; gap:1.75rem; }
+.grid--3{ grid-template-columns:1fr; }
+.grid--4{ grid-template-columns:1fr; }
+.grid--6{ grid-template-columns:repeat(2,1fr); }
+
+@media (min-width:640px){
+  .grid--3{ grid-template-columns:repeat(2,1fr); }
+  .grid--4{ grid-template-columns:repeat(2,1fr); }
+  .grid--6{ grid-template-columns:repeat(3,1fr); }
+}
+@media (min-width:960px){
+  .grid--3{ grid-template-columns:repeat(3,1fr); }
+  .grid--4{ grid-template-columns:repeat(4,1fr); }
+  .grid--6{ grid-template-columns:repeat(6,1fr); }
+}
+
+/* ============== SERVICE CARDS ============== */
+.card-service{
+  background:#fff; border-radius:var(--radius-md); padding:2.1rem 1.7rem;
+  box-shadow:var(--shadow-sm); transition:transform .25s ease, box-shadow .25s ease;
+  display:flex; flex-direction:column;
+}
+.card-service:hover{ transform:translateY(-6px); box-shadow:var(--shadow-md); }
+.card-service__icon{
+  width:56px; height:56px; border-radius:16px; background:var(--sky); color:var(--blue);
+  display:flex; align-items:center; justify-content:center; font-size:1.35rem; margin-bottom:1.1rem;
+}
+.card-service h3{ font-size:1.15rem; margin-bottom:.5rem; }
+.card-service p{ color:var(--gray); font-size:.93rem; flex-grow:1; }
+.card-service__link{ color:var(--blue); font-weight:700; font-size:.9rem; display:inline-flex; align-items:center; gap:.4rem; margin-top:.6rem; }
+.card-service__link i{ font-size:.75rem; transition:transform .2s ease; }
+.card-service__link:hover i{ transform:translateX(4px); }
+
+/* ============== WHY CHOOSE US ============== */
+.route-line{ position:relative; height:2px; background-image:linear-gradient(90deg, var(--blue-bright) 60%, transparent 0); background-size:14px 2px; background-repeat:repeat-x; margin:0 0 3rem; opacity:.5; display:none; }
+.route-line__plane{ position:absolute; top:-9px; left:50%; transform:translateX(-50%) rotate(90deg); color:var(--gold); font-size:1.1rem; animation:floaty 3s ease-in-out infinite; }
+@keyframes floaty{ 0%,100%{ transform:translateX(-50%) rotate(90deg) translateY(0);} 50%{ transform:translateX(-50%) rotate(90deg) translateY(-6px);} }
+@media (min-width:960px){ .route-line{ display:block; } }
+
+.why-item{ text-align:center; padding:1.6rem 1rem; }
+.why-item__icon{
+  width:64px; height:64px; margin:0 auto 1rem; border-radius:50%; background:var(--sky);
+  color:var(--blue); display:flex; align-items:center; justify-content:center; font-size:1.5rem;
+  box-shadow:0 0 0 6px #fff, 0 0 0 7px var(--sky-2);
+}
+.why-item h3{ font-size:1rem; margin-bottom:.4rem; }
+.why-item p{ color:var(--gray); font-size:.86rem; }
+
+/* ============== DESTINATIONS — BOARDING PASS CARDS ============== */
+.ticket{
+  background:#fff; border-radius:var(--radius-md); overflow:hidden; box-shadow:var(--shadow-sm);
+  transition:transform .25s ease, box-shadow .25s ease; display:flex; flex-direction:column;
+}
+.ticket:hover{ transform:translateY(-6px); box-shadow:var(--shadow-md); }
+.ticket__img{ aspect-ratio:7/5; overflow:hidden; }
+.ticket__img img{ width:100%; height:100%; object-fit:cover; transition:transform .5s ease; }
+.ticket:hover .ticket__img img{ transform:scale(1.08); }
+
+.ticket__perf{
+  position:relative; height:0; border-top:2px dashed var(--sky-2); margin:0 14px;
+}
+.ticket__perf::before, .ticket__perf::after{
+  content:""; position:absolute; top:-9px; width:18px; height:18px; border-radius:50%; background:var(--white);
+}
+.section--sky .ticket__perf::before, .section--sky .ticket__perf::after{ background:var(--sky); }
+.ticket__perf::before{ left:-23px; }
+.ticket__perf::after{ right:-23px; }
+
+.ticket__body{ padding:1.3rem 1.4rem 1.5rem; display:flex; flex-direction:column; gap:.5rem; flex-grow:1; }
+.ticket__body h3{ font-size:1.15rem; margin-bottom:.15rem; }
+.ticket__body p{ color:var(--gray); font-size:.9rem; margin-bottom:.6rem; flex-grow:1; }
+.ticket__meta{ display:flex; align-items:center; justify-content:space-between; gap:.6rem; }
+.ticket__tag{
+  font-family:var(--font-mono); font-size:.76rem; color:var(--navy); background:var(--sky);
+  padding:.35rem .6rem; border-radius:6px; display:inline-flex; align-items:center; gap:.35rem; white-space:nowrap;
+}
+
+/* ============== GALLERY ============== */
+.gallery-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:1rem; }
+.gallery-item{
+  position:relative; border:none; padding:0; border-radius:var(--radius-md); overflow:hidden;
+  aspect-ratio:4/3.2; background:var(--sky);
+}
+.gallery-item img{ width:100%; height:100%; object-fit:cover; transition:transform .5s ease; }
+.gallery-item:hover img{ transform:scale(1.1); }
+.gallery-item::after{
+  content:""; position:absolute; inset:0; background:linear-gradient(0deg, rgba(11,37,69,.7), transparent 55%);
+  opacity:0; transition:opacity .25s ease;
+}
+.gallery-item:hover::after{ opacity:1; }
+.gallery-item__cap{
+  position:absolute; left:14px; bottom:12px; color:#fff; font-weight:600; font-size:.9rem;
+  opacity:0; transform:translateY(8px); transition:.25s ease; text-align:left;
+}
+.gallery-item:hover .gallery-item__cap{ opacity:1; transform:translateY(0); }
+
+@media (min-width:640px){ .gallery-grid{ grid-template-columns:repeat(3,1fr); } }
+
+/* ============== LIGHTBOX ============== */
+.lightbox{
+  position:fixed; inset:0; z-index:2000; background:rgba(6,16,32,.94);
+  display:flex; align-items:center; justify-content:center; opacity:0; visibility:hidden;
+  transition:opacity .3s ease;
+}
+.lightbox.open{ opacity:1; visibility:visible; }
+.lightbox img{ max-width:90vw; max-height:82vh; border-radius:12px; box-shadow:0 30px 80px rgba(0,0,0,.5); }
+.lightbox__close, .lightbox__nav{
+  position:absolute; background:rgba(255,255,255,.12); color:#fff; border:none; border-radius:50%;
+  width:48px; height:48px; display:flex; align-items:center; justify-content:center; font-size:1.1rem;
+  transition:background .2s ease;
+}
+.lightbox__close:hover, .lightbox__nav:hover{ background:rgba(255,255,255,.25); }
+.lightbox__close{ top:20px; right:20px; }
+.lightbox__nav--prev{ left:16px; top:50%; transform:translateY(-50%); }
+.lightbox__nav--next{ right:16px; top:50%; transform:translateY(-50%); }
+
+/* ============== TESTIMONIALS ============== */
+.review{
+  background:#fff; border-radius:var(--radius-md); padding:2rem 1.8rem; box-shadow:var(--shadow-sm);
+  margin:0; position:relative;
+}
+.review__quote-icon{ color:var(--sky-2); font-size:1.6rem; margin-bottom:.6rem; }
+.review__stars{ color:var(--gold); letter-spacing:.15em; margin-bottom:.7rem; font-size:.95rem; }
+.review blockquote{ margin:0 0 1rem; color:var(--ink); font-size:.96rem; }
+.review figcaption{ font-family:var(--font-display); font-weight:600; color:var(--navy); }
+
+/* ============== CONTACT ============== */
+.contact-grid{ display:grid; grid-template-columns:1fr; gap:1.4rem; margin-bottom:2.6rem; }
+.contact-card{
+  background:var(--sky); border-radius:var(--radius-md); padding:1.6rem; text-align:center;
+}
+.contact-card__icon{
+  width:52px; height:52px; margin:0 auto .8rem; border-radius:50%; background:#fff; color:var(--blue);
+  display:flex; align-items:center; justify-content:center; font-size:1.25rem; box-shadow:var(--shadow-sm);
+}
+.contact-card h3{ font-size:1rem; margin-bottom:.3rem; }
+.contact-card p{ color:var(--gray); font-size:.9rem; margin:0; }
+
+.contact-actions{ display:flex; flex-wrap:wrap; gap:1rem; }
+
+@media (min-width:640px){ .contact-grid{ grid-template-columns:repeat(3,1fr); } }
+@media (min-width:960px){ .contact-grid{ grid-template-columns:repeat(5,1fr); } }
+
+/* ============== FINAL CTA ============== */
+.final-cta{
+  position:relative; background:linear-gradient(120deg, var(--navy) 0%, var(--blue) 100%);
+  padding:7rem 0 6rem; text-align:center; color:#fff; overflow:hidden;
+}
+.final-cta__horizon{ position:absolute; top:-1px; left:0; right:0; width:100%; height:70px; }
+.final-cta__inner h2{ color:#fff; font-size:clamp(1.9rem,4.4vw,2.8rem); }
+.final-cta__inner p{ color:rgba(255,255,255,.85); font-size:1.1rem; margin-bottom:2rem; }
+
+/* ============== FOOTER ============== */
+.footer{ background:var(--navy); color:rgba(255,255,255,.75); padding:4.5rem 0 0; }
+.footer__grid{ display:grid; grid-template-columns:1fr; gap:2.6rem; padding-bottom:3rem; }
+.footer__brand p{ margin:1rem 0 1.3rem; font-size:.92rem; max-width:320px; }
+.footer__social{ display:flex; gap:.7rem; }
+.footer__social a{
+  width:38px; height:38px; border-radius:50%; background:rgba(255,255,255,.08);
+  display:flex; align-items:center; justify-content:center; transition:background .2s ease;
+}
+.footer__social a:hover{ background:var(--gold); color:var(--navy); }
+.footer__col h4{ color:#fff; font-size:.95rem; text-transform:uppercase; letter-spacing:.08em; margin-bottom:1.1rem; }
+.footer__col{ display:flex; flex-direction:column; gap:.65rem; }
+.footer__col a{ font-size:.92rem; color:rgba(255,255,255,.7); transition:color .2s ease; display:flex; align-items:center; gap:.5rem; }
+.footer__col a:hover{ color:var(--gold); }
+.footer__col .btn{ margin-top:.4rem; width:fit-content; }
+.footer__bottom{
+  border-top:1px solid rgba(255,255,255,.1); padding:1.4rem 24px; text-align:center; font-size:.83rem;
+}
+
+@media (min-width:640px){ .footer__grid{ grid-template-columns:1fr 1fr; } }
+@media (min-width:960px){ .footer__grid{ grid-template-columns:1.4fr .8fr .8fr 1fr; } }
+
+/* ============== FLOATING WHATSAPP BUTTON ============== */
+.floating-wa{
+  position:fixed; right:22px; bottom:22px; z-index:900;
+  width:60px; height:60px; border-radius:50%; background:var(--whatsapp); color:#fff;
+  display:flex; align-items:center; justify-content:center; font-size:1.7rem;
+  box-shadow:0 10px 30px rgba(37,211,102,.45); transition:transform .2s ease, background .2s ease;
+}
+.floating-wa:hover{ transform:scale(1.08) translateY(-2px); background:var(--whatsapp-dark); }
+.floating-wa__ring{
+  position:absolute; inset:0; border-radius:50%; border:2px solid var(--whatsapp);
+  animation:pulse-ring 2.2s ease-out infinite;
+}
+@keyframes pulse-ring{
+  0%{ transform:scale(1); opacity:.7; }
+  100%{ transform:scale(1.7); opacity:0; }
+}
+
+/* ============== SCROLL REVEAL ============== */
+.reveal{ opacity:0; transform:translateY(24px); transition:opacity .7s ease, transform .7s ease; }
+.reveal.in-view{ opacity:1; transform:translateY(0); }
+
+/* ============== LARGER SCREENS: ABOUT / GRID LAYOUT ============== */
+@media (min-width:900px){
+  .about{ grid-template-columns:.85fr 1fr; gap:4.5rem; }
+  .stat-strip__grid{ grid-template-columns:repeat(4,1fr); }
+  .stat{ border-left:1px dashed rgba(255,255,255,.18); padding-left:1.4rem; }
+}
+
+@media (min-width:1200px){
+  .hero__title{ font-size:4.2rem; }
+}
+
+</style>
+
+<!-- Structured data for SEO -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TravelAgency",
+  "name": "Chandru Travels",
+  "description": "Reliable tour packages, family trips, corporate travel, outstation cabs and airport transfers.",
+  "telephone": "+91-90871-37006",
+  "email": "info@chandrutravels.com",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Paravai",
+    "addressLocality": "Madurai",
+    "addressRegion": "Tamil Nadu",
+    "addressCountry": "IN"
+  },
+  "openingHours": "Mo-Su 00:00-23:59"
+}
+</script>
+</head>
+<body>
+
+<a href="#main" class="skip-link">Skip to main content</a>
+
+<!-- ============ NAVBAR ============ -->
+<header class="navbar" id="navbar">
+  <div class="container navbar__inner">
+    <a href="#home" class="brand" aria-label="Chandru Travels home">
+      <span class="brand__mark" aria-hidden="true">
+        <svg viewBox="0 0 40 40" width="36" height="36">
+          <circle cx="20" cy="20" r="19" fill="none" stroke="currentColor" stroke-width="1.4"></circle>
+          <path d="M4 24 Q 20 12 36 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path>
+          <circle cx="20" cy="16" r="4.2" fill="currentColor"></circle>
+        </svg>
+      </span>
+      <span class="brand__text">Chandru<em>Travels</em></span>
+    </a>
+
+    <nav class="nav-links" id="navLinks" aria-label="Primary">
+      <a href="#home" class="nav-link">Home</a>
+      <a href="#about" class="nav-link">About</a>
+      <a href="#services" class="nav-link">Services</a>
+      <a href="#destinations" class="nav-link">Destinations</a>
+      <a href="#gallery" class="nav-link">Gallery</a>
+      <a href="#contact" class="nav-link">Contact</a>
+    
+    </nav>
+
+    <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- ============ MOBILE OFFCANVAS ============ -->
+<div class="offcanvas" id="mobileMenu" aria-hidden="true">
+  <div class="offcanvas__backdrop" id="offcanvasBackdrop"></div>
+  <div class="offcanvas__panel" role="dialog" aria-label="Mobile menu">
+    <div class="offcanvas__top">
+      <span class="brand__text">Chandru<em>Travels</em></span>
+      <button class="offcanvas__close" id="offcanvasClose" aria-label="Close menu"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <nav class="offcanvas__links" aria-label="Mobile">
+      <a href="#home" class="offcanvas__link">Home</a>
+      <a href="#about" class="offcanvas__link">About</a>
+      <a href="#services" class="offcanvas__link">Services</a>
+      <a href="#destinations" class="offcanvas__link">Destinations</a>
+      <a href="#gallery" class="offcanvas__link">Gallery</a>
+      <a href="#contact" class="offcanvas__link">Contact</a>
+    </nav>
+    <a href="#" class="btn btn--primary btn--block js-wa" data-msg="Hello Chandru Travels, I would like to book a travel service.">
+      <i class="fa-brands fa-whatsapp"></i> Book Now on WhatsApp
+    </a>
+    <div class="offcanvas__contact">
+      <a href="tel:+919087137006"><i class="fa-solid fa-phone"></i> +91 90871 37006</a>
+    </div>
+  </div>
+</div>
+
+<main id="main">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero" id="home">
+    <div class="hero__bg" style="background-image:url('https://loremflickr.com/1920/1200/roadtrip,mountains,travel/all?lock=101')"></div>
+    <div class="hero__overlay"></div>
+    <div class="container hero__inner">
+      <p class="eyebrow eyebrow--light reveal">Chandru Travels &middot; Trusted Since 2013</p>
+      <h1 class="hero__title reveal">Explore the World with <span>Chandru Travels</span></h1>
+      <p class="hero__desc reveal">From weekend getaways to cross-country tours, we take care of every mile — comfortable vehicles, professional drivers and dependable service, all just one message away.</p>
+      <div class="hero__cta reveal">
+       
+        <a href="#services" class="btn btn--ghost btn--lg">
+          Explore Our Services <i class="fa-solid fa-arrow-right"></i>
+        </a>
+      </div>
+
+      <div class="hero__stats reveal">
+        <div><strong>15,000+</strong><span>Happy Travellers</span></div>
+        <div><strong>50+</strong><span>Destinations</span></div>
+        <div><strong>12+</strong><span>Years on the Road</span></div>
+      </div>
+    </div>
+
+    <svg class="hero__horizon" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0,64 C 240,120 480,0 720,40 C 960,80 1200,10 1440,56 L1440,120 L0,120 Z" fill="var(--white)"></path>
+    </svg>
+  </section>
+
+  <!-- ============ ABOUT ============ -->
+  <section class="section" id="about">
+    <div class="container about">
+      <div class="about__media reveal">
+        <img src="./img/car.jpg" alt="Chandru Travels vehicle ready for a journey" loading="lazy" width="900" height="1000">
+        <div class="about__badge">
+          <i class="fa-solid fa-headset"></i>
+          <div><strong>24/7</strong><span>Support on WhatsApp</span></div>
+        </div>
+      </div>
+
+      <div class="about__content">
+        <p class="eyebrow reveal">About Us</p>
+        <h2 class="section__title reveal">Travel planned with care, <br> delivered with trust</h2>
+        <p class="section__lead reveal">Chandru Travels has spent over a decade getting people where they need to go — comfortably, safely and on time. Whether it's a family holiday, a corporate transfer or a solo weekend escape, our drivers and coordinators handle the logistics so you can focus on the journey itself.</p>
+
+        <ul class="checklist reveal">
+          <li><i class="fa-solid fa-circle-check"></i> Reliable, well-maintained fleet for every trip type</li>
+          <li><i class="fa-solid fa-circle-check"></i> Experienced, courteous, background-verified drivers</li>
+          <li><i class="fa-solid fa-circle-check"></i> Transparent pricing with no hidden charges</li>
+          <li><i class="fa-solid fa-circle-check"></i> Safety-first vehicles, routes and drop-off timings</li>
+        </ul>
+
+        </a>
+      </div>
+    </div>
+
+    <!-- Departure-board style stat strip -->
+    <div class="stat-strip">
+      <div class="container stat-strip__grid">
+        <div class="stat" data-count="15000" data-suffix="+">
+          <span class="stat__num">0</span>
+          <span class="stat__label">Happy Customers</span>
+        </div>
+        <div class="stat" data-count="50" data-suffix="+">
+          <span class="stat__num">0</span>
+          <span class="stat__label">Destinations Covered</span>
+        </div>
+        <div class="stat" data-count="12" data-suffix="+">
+          <span class="stat__num">0</span>
+          <span class="stat__label">Years of Experience</span>
+        </div>
+        <div class="stat" data-count="8500" data-suffix="+">
+          <span class="stat__num">0</span>
+          <span class="stat__label">Successful Trips</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SERVICES ============ -->
+  <section class="section section--sky" id="services">
+    <div class="container">
+      <div class="section__head">
+        <p class="eyebrow reveal">Our Services</p>
+        <h2 class="section__title reveal">Everything you need, <br>for every kind of trip</h2>
+        <p class="section__lead reveal">Pick a service below and book it directly on WhatsApp — no forms, no waiting.</p>
+      </div>
+
+      <div class="grid grid--4">
+
+        <article class="card-service reveal">
+          <div class="card-service__icon"><i class="fa-solid fa-map-location-dot"></i></div>
+          <h3>Tour Packages</h3>
+          <p>All-inclusive holiday packages covering stay, sightseeing and travel, planned end-to-end.</p>
+          <a href="#" class="card-service__link js-wa" data-msg="Hello Chandru Travels, I'm interested in your Tour Packages.">Book Now <i class="fa-solid fa-arrow-right"></i></a>
+        </article>
+
+        <article class="card-service reveal">
+          <div class="card-service__icon"><i class="fa-solid fa-people-roof"></i></div>
+          <h3>Family Trips</h3>
+          <p>Comfortable, kid- and elder-friendly journeys with flexible stops at a pace that suits everyone.</p>
+          <a href="#" class="card-service__link js-wa" data-msg="Hello Chandru Travels, I'm interested in booking a Family Trip.">Book Now <i class="fa-solid fa-arrow-right"></i></a>
+        </article>
+
+        <article class="card-service reveal">
+          <div class="card-service__icon"><i class="fa-solid fa-briefcase"></i></div>
+          <h3>Corporate Travel</h3>
+          <p>Dependable transport for business trips, team outings and corporate events, always on schedule.</p>
+          <a href="#" class="card-service__link js-wa" data-msg="Hello Chandru Travels, I'm interested in Corporate Travel services.">Book Now <i class="fa-solid fa-arrow-right"></i></a>
+        </article>
+
+        <article class="card-service reveal">
+          <div class="card-service__icon"><i class="fa-solid fa-road"></i></div>
+          <h3>Outstation Travel</h3>
+          <p>Safe, well-maintained vehicles for long-distance trips between cities with drivers who know the routes.</p>
+          <a href="#" class="card-service__link js-wa" data-msg="Hello Chandru Travels, I'm interested in Outstation Travel.">Book Now <i class="fa-solid fa-arrow-right"></i></a>
+        </article>
+
+        <article class="card-service reveal">
+          <div class="card-service__icon"><i class="fa-solid fa-city"></i></div>
+          <h3>Local Travel</h3>
+          <p>Convenient point-to-point rides within the city for errands, events or short visits.</p>
+          <a href="#" class="card-service__link js-wa" data-msg="Hello Chandru Travels, I'm interested in Local Travel.">Book Now <i class="fa-solid fa-arrow-right"></i></a>
+        </article>
+
+        <article class="card-service reveal">
+          <div class="card-service__icon"><i class="fa-solid fa-plane-arrival"></i></div>
+          <h3>Airport Transfers</h3>
+          <p>On-time pickups and drop-offs, so you're never rushing to catch a flight.</p>
+          <a href="#" class="card-service__link js-wa" data-msg="Hello Chandru Travels, I'm interested in Airport Transfers.">Book Now <i class="fa-solid fa-arrow-right"></i></a>
+        </article>
+
+        <article class="card-service reveal">
+          <div class="card-service__icon"><i class="fa-solid fa-users"></i></div>
+          <h3>Group Tours</h3>
+          <p>Spacious vehicles and organised itineraries for college trips, friend groups and large gatherings.</p>
+          <a href="#" class="card-service__link js-wa" data-msg="Hello Chandru Travels, I'm interested in a Group Tour.">Book Now <i class="fa-solid fa-arrow-right"></i></a>
+        </article>
+
+        <article class="card-service reveal">
+          <div class="card-service__icon"><i class="fa-solid fa-route"></i></div>
+          <h3>Customized Trips</h3>
+          <p>Tell us where you want to go — we'll build a route and schedule made just for you.</p>
+          <a href="#" class="card-service__link js-wa" data-msg="Hello Chandru Travels, I'd like a Customized Trip plan.">Book Now <i class="fa-solid fa-arrow-right"></i></a>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ WHY CHOOSE US ============ -->
+  <section class="section" id="why-us">
+    <div class="container">
+      <div class="section__head">
+        <p class="eyebrow reveal">Why Chandru Travels</p>
+        <h2 class="section__title reveal">Built on trust, mile after mile</h2>
+      </div>
+
+      <div class="route-line reveal" aria-hidden="true">
+        <i class="fa-solid fa-plane route-line__plane"></i>
+      </div>
+
+      <div class="grid grid--6 why-grid">
+        <div class="why-item reveal">
+          <div class="why-item__icon"><i class="fa-solid fa-shield-halved"></i></div>
+          <h3>Safe &amp; Comfortable</h3>
+          <p>Well-maintained vehicles and careful drivers on every route.</p>
+        </div>
+        <div class="why-item reveal">
+          <div class="why-item__icon"><i class="fa-solid fa-id-badge"></i></div>
+          <h3>Experienced Drivers</h3>
+          <p>Verified professionals who know the roads and the destinations.</p>
+        </div>
+        <div class="why-item reveal">
+          <div class="why-item__icon"><i class="fa-solid fa-tags"></i></div>
+          <h3>Affordable Pricing</h3>
+          <p>Honest, upfront rates with absolutely no hidden charges.</p>
+        </div>
+        <div class="why-item reveal">
+          <div class="why-item__icon"><i class="fa-solid fa-clock"></i></div>
+          <h3>Reliable Service</h3>
+          <p>Punctual pickups and drop-offs, trip after trip.</p>
+        </div>
+        <div class="why-item reveal">
+          <div class="why-item__icon"><i class="fa-brands fa-whatsapp"></i></div>
+          <h3>Easy WhatsApp Booking</h3>
+          <p>No forms, no waiting — just message us and you're booked.</p>
+        </div>
+        <div class="why-item reveal">
+          <div class="why-item__icon"><i class="fa-solid fa-headset"></i></div>
+          <h3>Customer Support</h3>
+          <p>Real people ready to help before, during and after your trip.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ DESTINATIONS ============ -->
+  <section class="section section--sky" id="destinations">
+    <div class="container">
+      <div class="section__head">
+        <p class="eyebrow reveal">Tours &amp; Destinations</p>
+        <h2 class="section__title reveal">Popular places we take <br>travellers to</h2>
+        <p class="section__lead reveal">A few favourites from our route map — every trip is bookable directly on WhatsApp.</p>
+      </div>
+
+      <div class="grid grid--4 destinations">
+
+        <article class="ticket reveal">
+          <div class="ticket__img"><img src="./img/ooty.jpg" alt="Tea estates and misty hills of Ooty" loading="lazy" width="700" height="500"></div>
+          <div class="ticket__perf" aria-hidden="true"></div>
+          <div class="ticket__body">
+            <h3>Ooty</h3>
+            <p>Rolling tea estates, misty hills and a toy-train ride through the Nilgiris.</p>
+            <div class="ticket__meta">
+              
+              <a href="#" class="btn btn--sm btn--primary js-wa" data-msg="Hello Chandru Travels, I'd like to book the Ooty tour.">Book Now</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="ticket reveal">
+          <div class="ticket__img"><img src="./img/moonar.jpg" alt="Emerald tea gardens of Munnar, Kerala" loading="lazy" width="700" height="500"></div>
+          <div class="ticket__perf" aria-hidden="true"></div>
+          <div class="ticket__body">
+            <h3>Munnar</h3>
+            <p>Emerald tea gardens and cool hill air in Kerala's most scenic hill station.</p>
+            <div class="ticket__meta">
+             
+              <a href="#" class="btn btn--sm btn--primary js-wa" data-msg="Hello Chandru Travels, I'd like to book the Munnar tour.">Book Now</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="ticket reveal">
+          <div class="ticket__img"><img src="./img/kodaikanal.jpg" alt="Star-shaped lake and pine forests of Kodaikanal" loading="lazy" width="700" height="500"></div>
+          <div class="ticket__perf" aria-hidden="true"></div>
+          <div class="ticket__body">
+            <h3>Kodaikanal</h3>
+            <p>Pine forests, a star-shaped lake and quiet viewpoints above the clouds.</p>
+            <div class="ticket__meta">
+             
+              <a href="#" class="btn btn--sm btn--primary js-wa" data-msg="Hello Chandru Travels, I'd like to book the Kodaikanal tour.">Book Now</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="ticket reveal">
+          <div class="ticket__img"><img src="./img/kanyakumari.jpg" alt="Sea view at Kanyakumari, where three seas meet" loading="lazy" width="700" height="500"></div>
+          <div class="ticket__perf" aria-hidden="true"></div>
+          <div class="ticket__body">
+            <h3>Kanyakumari</h3>
+            <p>Where three seas meet — sunrise and sunset from the very same shore.</p>
+            <div class="ticket__meta">
+            
+              <a href="#" class="btn btn--sm btn--primary js-wa" data-msg="Hello Chandru Travels, I'd like to book the Kanyakumari trip.">Book Now</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="ticket reveal">
+          <div class="ticket__img"><img src="./img/rameshwaram.jpg" alt="Temple town of Rameshwaram" loading="lazy" width="700" height="500"></div>
+          <div class="ticket__perf" aria-hidden="true"></div>
+          <div class="ticket__body">
+            <h3>Rameshwaram</h3>
+            <p>A sacred island town with temple spires and a bridge that stretches over the sea.</p>
+            <div class="ticket__meta">
+             
+              <a href="#" class="btn btn--sm btn--primary js-wa" data-msg="Hello Chandru Travels, I'd like to book the Rameshwaram tour.">Book Now</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="ticket reveal">
+          <div class="ticket__img"><img src="./img/pondicherry.jpg" alt="French Quarter streets of Pondicherry" loading="lazy" width="700" height="500"></div>
+          <div class="ticket__perf" aria-hidden="true"></div>
+          <div class="ticket__body">
+            <h3>Pondicherry</h3>
+            <p>French-quarter streets, seaside promenades and a slower, colourful pace of life.</p>
+            <div class="ticket__meta">
+             
+              <a href="#" class="btn btn--sm btn--primary js-wa" data-msg="Hello Chandru Travels, I'd like to book the Pondicherry tour.">Book Now</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="ticket reveal">
+          <div class="ticket__img"><img src="./img/azapey.jpg" alt="Houseboat on Alleppey backwaters, Kerala" loading="lazy" width="700" height="500"></div>
+          <div class="ticket__perf" aria-hidden="true"></div>
+          <div class="ticket__body">
+            <h3>Alleppey Backwaters</h3>
+            <p>Houseboats drifting through Kerala's palm-lined canals and calm backwaters.</p>
+            <div class="ticket__meta">
+              
+              <a href="#" class="btn btn--sm btn--primary js-wa" data-msg="Hello Chandru Travels, I'd like to book the Alleppey Backwaters tour.">Book Now</a>
+            </div>
+          </div>
+        </article>
+
+    <article class="ticket reveal">
+          <div class="ticket__img"><img src="./img/varkala.jpg" alt="Houseboat on Alleppey backwaters, Kerala" loading="lazy" width="700" height="500"></div>
+          <div class="ticket__perf" aria-hidden="true"></div>
+          <div class="ticket__body">
+            <h3>varkala</h3>
+            <p>Varkala is a popular coastal town in Kerala famous for its stunning red cliffs that overlook the Arabian Sea.</p>
+            <div class="ticket__meta">
+              
+              <a href="#" class="btn btn--sm btn--primary js-wa" data-msg="Hello Chandru Travels, I'd like to book the Alleppey Backwaters tour.">Book Now</a>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ GALLERY ============ -->
+  <section class="section" id="gallery">
+    <div class="container">
+      <div class="section__head">
+        <p class="eyebrow reveal">Gallery</p>
+        <h2 class="section__title reveal">Moments from the road</h2>
+        <p class="section__lead reveal">A look at our vehicles, destinations and the travellers who've ridden with us. Tap any photo to zoom in.</p>
+      </div>
+
+      <div class="gallery-grid" id="galleryGrid">
+        <button class="gallery-item reveal" data-full="https://loremflickr.com/1400/1000/tourbus,travel/all?lock=11">
+          <img src="./img/comf.jpg" alt="Chandru Travels tour vehicle" loading="lazy" width="700" height="560">
+          <span class="gallery-item__cap">Our Fleet</span>
+        </button>
+        <button class="gallery-item reveal" data-full="https://loremflickr.com/1400/1000/vaninterior,travel/all?lock=12">
+          <img src="./img/site.jpg" alt="Comfortable travel vehicle interior" loading="lazy" width="700" height="560">
+          <span class="gallery-item__cap">Comfort Inside</span>
+        </button>
+        <button class="gallery-item reveal" data-full="https://loremflickr.com/1400/1000/hillstation,road,india/all?lock=13">
+          <img src="./img/road.jpg" alt="Scenic hill station road" loading="lazy" width="700" height="560">
+          <span class="gallery-item__cap">Hill Roads</span>
+        </button>
+        <button class="gallery-item reveal" data-full="https://loremflickr.com/1400/1000/beach,sunset,coast/all?lock=14">
+          <img src="./img/coas.jpg" alt="Beach sunset on a coastal trip" loading="lazy" width="700" height="560">
+          <span class="gallery-item__cap">Coastal Escapes</span>
+        </button>
+        <button class="gallery-item reveal" data-full="https://loremflickr.com/1400/1000/backwaters,houseboat,kerala/all?lock=15">
+          <img src="./img/water.jpg" alt="Kerala backwaters houseboat" loading="lazy" width="700" height="560">
+          <span class="gallery-item__cap">Backwater Days</span>
+        </button>
+        <button class="gallery-item reveal" data-full="https://loremflickr.com/1400/1000/southindia,temple,architecture/all?lock=16">
+          <img src="./img/temple.jpg" alt="South Indian temple architecture" loading="lazy" width="700" height="560">
+          <span class="gallery-item__cap">Temple Towns</span>
+        </button>
+        <button class="gallery-item reveal" data-full="https://loremflickr.com/1400/1000/friends,travel,group/all?lock=17">
+          <img src="./img/camp.jpg" alt="Group of travellers on a trip" loading="lazy" width="700" height="560">
+          <span class="gallery-item__cap">Travel Moments</span>
+        </button>
+        <button class="gallery-item reveal" data-full="https://loremflickr.com/1400/1000/waterfall,forest,india/all?lock=18">
+          <img src="./img/silver.jpg" alt="Waterfall on a scenic route" loading="lazy" width="700" height="560">
+          <span class="gallery-item__cap">Scenic Stops</span>
+        </button>
+        <button class="gallery-item reveal" data-full="https://loremflickr.com/1400/1000/mountain,viewpoint,clouds/all?lock=19">
+          <img src="./img/kutralam.jpg" alt="Mountain viewpoint above the clouds" loading="lazy" width="700" height="560">
+          <span class="gallery-item__cap">Above the Clouds</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ LIGHTBOX ============ -->
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <button class="lightbox__close" id="lightboxClose" aria-label="Close image"><i class="fa-solid fa-xmark"></i></button>
+    <button class="lightbox__nav lightbox__nav--prev" id="lightboxPrev" aria-label="Previous image"><i class="fa-solid fa-chevron-left"></i></button>
+    <img src="" alt="" id="lightboxImg">
+    <button class="lightbox__nav lightbox__nav--next" id="lightboxNext" aria-label="Next image"><i class="fa-solid fa-chevron-right"></i></button>
+  </div>
+
+  <!-- ============ TESTIMONIALS ============ -->
+  <section class="section section--sky" id="testimonials">
+    <div class="container">
+      <div class="section__head">
+        <p class="eyebrow reveal">Testimonials</p>
+        <h2 class="section__title reveal">What our travellers say</h2>
+      </div>
+
+      <div class="grid grid--3">
+        <!-- Replace name / rating / review below with real customer feedback -->
+        <figure class="review reveal">
+          <i class="fa-solid fa-quote-left review__quote-icon" aria-hidden="true"></i>
+          <div class="review__stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <blockquote>Our Ooty trip was smooth from start to finish. The driver was punctual and the vehicle spotless. Highly recommend Chandru Travels.</blockquote>
+          <figcaption>Priya Ramesh</figcaption>
+        </figure>
+
+        <figure class="review reveal">
+          <i class="fa-solid fa-quote-left review__quote-icon" aria-hidden="true"></i>
+          <div class="review__stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <blockquote>Booked a corporate trip for twenty people. Everything was organised and on time, with great communication throughout.</blockquote>
+          <figcaption>Arjun Sathish</figcaption>
+        </figure>
+
+        <figure class="review reveal">
+          <i class="fa-solid fa-quote-left review__quote-icon" aria-hidden="true"></i>
+          <div class="review__stars" aria-label="4 out of 5 stars">★★★★☆</div>
+          <blockquote>Comfortable family trip to Munnar. The kids enjoyed it and the driver was patient with all our extra stops.</blockquote>
+          <figcaption>Meena Kannan</figcaption>
+        </figure>
+
+        <figure class="review reveal">
+          <i class="fa-solid fa-quote-left review__quote-icon" aria-hidden="true"></i>
+          <div class="review__stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <blockquote>A 4 AM airport pickup and the driver was already waiting outside. Professional and genuinely reliable.</blockquote>
+          <figcaption>Suresh Babu</figcaption>
+        </figure>
+
+        <figure class="review reveal">
+          <i class="fa-solid fa-quote-left review__quote-icon" aria-hidden="true"></i>
+          <div class="review__stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <blockquote>They customised our Kerala itinerary exactly the way we wanted. Booking on WhatsApp made everything effortless.</blockquote>
+          <figcaption>Divya Prakash</figcaption>
+        </figure>
+
+        <figure class="review reveal">
+          <i class="fa-solid fa-quote-left review__quote-icon" aria-hidden="true"></i>
+          <div class="review__stars" aria-label="4 out of 5 stars">★★★★☆</div>
+          <blockquote>Good value for money on our Goa trip. We'll definitely book with Chandru Travels again.</blockquote>
+          <figcaption>Karthik Raja</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CONTACT ============ -->
+  <section class="section" id="contact">
+    <div class="container">
+      <div class="section__head">
+        <p class="eyebrow reveal">Contact Us</p>
+        <h2 class="section__title reveal">Let's plan your next trip</h2>
+        <p class="section__lead reveal">No forms to fill — just reach out directly and we'll take it from there.</p>
+      </div>
+
+      <div class="contact-grid">
+        <div class="contact-card reveal">
+          <div class="contact-card__icon"><i class="fa-solid fa-phone"></i></div>
+          <h3>Phone</h3>
+          <p>+91 90871 37006</p>
+        </div>
+        <div class="contact-card reveal">
+          <div class="contact-card__icon"><i class="fa-brands fa-whatsapp"></i></div>
+          <h3>WhatsApp</h3>
+          <p>+91 90871 37006</p>
+        </div>
+        <div class="contact-card reveal">
+          <div class="contact-card__icon"><i class="fa-solid fa-envelope"></i></div>
+          <h3>Email</h3>
+          <p>alagurajaa54@gmail.com</p>
+        </div>
+        <div class="contact-card reveal">
+          <div class="contact-card__icon"><i class="fa-solid fa-location-dot"></i></div>
+          <h3>Address</h3>
+          <p>Paravai, Madurai, Tamil Nadu, India</p>
+        </div>
+        <div class="contact-card reveal">
+          <div class="contact-card__icon"><i class="fa-solid fa-clock"></i></div>
+          <h3>Business Hours</h3>
+          <p>Open 24 Hours<br>All 7 Days a Week</p>
+        </div>
+      </div>
+
+      <div class="contact-actions reveal">
+        <a href="tel:+919087137006" class="btn btn--outline btn--lg"><i class="fa-solid fa-phone"></i> Call Now</a>
+        <a href="#" class="btn btn--whatsapp btn--lg js-wa" data-msg="Hello Chandru Travels, I have a question about your services.">
+          <i class="fa-brands fa-whatsapp"></i> WhatsApp Us
+        </a>
+        <a href="#" class="btn btn--primary btn--lg js-wa" data-msg="Hello Chandru Travels, I would like to book a travel service.">
+          Book Now
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FINAL CTA ============ -->
+  <section class="final-cta">
+    <svg class="final-cta__horizon" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0,64 C 240,10 480,110 720,60 C 960,20 1200,90 1440,50 L1440,0 L0,0 Z" fill="var(--white)"></path>
+    </svg>
+    <div class="container final-cta__inner reveal">
+      <h2>Ready for Your Next Journey?</h2>
+      <p>Travel comfortably and confidently with Chandru Travels.</p>
+      <a href="#" class="btn btn--gold btn--lg js-wa" data-msg="Hello Chandru Travels, I'm ready to book my trip!">
+        Book Your Trip on WhatsApp <i class="fa-brands fa-whatsapp"></i>
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="container footer__grid">
+    <div class="footer__brand">
+      <span class="brand__text brand__text--light">Chandru<em>Travels</em></span>
+      <p>Comfortable, reliable travel since 2013 &mdash; tour packages, family trips, corporate travel and more, booked in one message.</p>
+      <div class="footer__social">
+        <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#" aria-label="Twitter / X"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+      </div>
+    </div>
+
+    <div class="footer__col">
+      <h4>Quick Links</h4>
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#destinations">Destinations</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#contact">Contact</a>
+    </div>
+
+    <div class="footer__col">
+      <h4>Services</h4>
+      <a href="#services">Tour Packages</a>
+      <a href="#services">Family Trips</a>
+      <a href="#services">Corporate Travel</a>
+      <a href="#services">Outstation Travel</a>
+      <a href="#services">Airport Transfers</a>
+    </div>
+
+    <div class="footer__col">
+      <h4>Contact</h4>
+      <a href="tel:+919087137006"><i class="fa-solid fa-phone"></i> +91 90871 37006</a>
+      <a href="mailto:alagurajaa54@gmail.com"><i class="fa-solid fa-envelope"></i> alagurajaa54@gmail.com</a>
+      <a href="#"><i class="fa-solid fa-location-dot"></i> Paravai, Madurai, Tamil Nadu</a>
+      <a href="#" class="btn btn--whatsapp btn--sm js-wa" data-msg="Hello Chandru Travels, I would like to book a travel service.">
+        <i class="fa-brands fa-whatsapp"></i> WhatsApp Us
+      </a>
+    </div>
+  </div>
+
+  <div class="footer__bottom">
+    <p>&copy; <span id="year"></span> Chandru Travels. All rights reserved.</p>
+  </div>
+</footer>
+
+<!-- ============ FLOATING WHATSAPP BUTTON ============ -->
+<a href="#" class="floating-wa js-wa" data-msg="Hello Chandru Travels, I would like to book a travel service." aria-label="Chat with Chandru Travels on WhatsApp">
+  <i class="fa-brands fa-whatsapp"></i>
+  <span class="floating-wa__ring" aria-hidden="true"></span>
+</a>
+
+<script>
+/* ==========================================================================
+   CHANDRU TRAVELS — SITE SCRIPT
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1) WHATSAPP CONFIG
+   Change ONLY this number to update every "Book Now" / WhatsApp button
+   on the entire site. Use the country code with no "+", spaces or dashes.
+   Example: India number +91 90871 37006  ->  "919087137006"
+   -------------------------------------------------------------------------- */
+const WHATSAPP_NUMBER = "919087137006"; // TODO: replace with the real business number
+
+const DEFAULT_WHATSAPP_MESSAGE =
+  "Hello Chandru Travels, I would like to book a travel service.";
+
+function buildWhatsAppLink(message) {
+  const text = encodeURIComponent(message || DEFAULT_WHATSAPP_MESSAGE);
+  return `https://wa.me/${WHATSAPP_NUMBER}?text=${text}`;
+}
+
+/* Wire up every element flagged as a WhatsApp trigger (buttons, links, the
+   floating button, etc). Each element can carry its own data-msg. */
+function initWhatsAppButtons() {
+  document.querySelectorAll(".js-wa").forEach((el) => {
+    const message = el.getAttribute("data-msg") || DEFAULT_WHATSAPP_MESSAGE;
+    el.setAttribute("href", buildWhatsAppLink(message));
+    el.setAttribute("target", "_blank");
+    el.setAttribute("rel", "noopener noreferrer");
+  });
+}
+
+/* --------------------------------------------------------------------------
+   2) NAVBAR: solid background after scroll + active link highlight
+   -------------------------------------------------------------------------- */
+function initNavbarScroll() {
+  const navbar = document.getElementById("navbar");
+  if (!navbar) return;
+
+  const onScroll = () => {
+    navbar.classList.toggle("scrolled", window.scrollY > 40);
+  };
+  onScroll();
+  window.addEventListener("scroll", onScroll, { passive: true });
+}
+
+function initActiveNavLink() {
+  const links = document.querySelectorAll(".nav-link[href^='#']");
+  const sections = Array.from(links)
+    .map((l) => document.querySelector(l.getAttribute("href")))
+    .filter(Boolean);
+
+  if (!("IntersectionObserver" in window) || sections.length === 0) return;
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const id = `#${entry.target.id}`;
+          links.forEach((l) =>
+            l.classList.toggle("active", l.getAttribute("href") === id)
+          );
+        }
+      });
+    },
+    { rootMargin: "-45% 0px -50% 0px" }
+  );
+
+  sections.forEach((s) => observer.observe(s));
+}
+
+/* --------------------------------------------------------------------------
+   3) MOBILE OFFCANVAS MENU
+   -------------------------------------------------------------------------- */
+function initMobileMenu() {
+  const hamburger = document.getElementById("hamburger");
+  const menu = document.getElementById("mobileMenu");
+  const closeBtn = document.getElementById("offcanvasClose");
+  const backdrop = document.getElementById("offcanvasBackdrop");
+  if (!hamburger || !menu) return;
+
+  const open = () => {
+    menu.classList.add("open");
+    menu.setAttribute("aria-hidden", "false");
+    hamburger.setAttribute("aria-expanded", "true");
+    document.body.style.overflow = "hidden";
+  };
+  const close = () => {
+    menu.classList.remove("open");
+    menu.setAttribute("aria-hidden", "true");
+    hamburger.setAttribute("aria-expanded", "false");
+    document.body.style.overflow = "";
+  };
+
+  hamburger.addEventListener("click", () => {
+    menu.classList.contains("open") ? close() : open();
+  });
+  closeBtn?.addEventListener("click", close);
+  backdrop?.addEventListener("click", close);
+  menu.querySelectorAll(".offcanvas__link, .js-wa").forEach((link) =>
+    link.addEventListener("click", close)
+  );
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") close();
+  });
+}
+
+/* --------------------------------------------------------------------------
+   4) SCROLL-REVEAL ANIMATIONS
+   -------------------------------------------------------------------------- */
+function initScrollReveal() {
+  const items = document.querySelectorAll(".reveal");
+  if (!("IntersectionObserver" in window) || items.length === 0) {
+    items.forEach((el) => el.classList.add("in-view"));
+    return;
+  }
+
+  const observer = new IntersectionObserver(
+    (entries, obs) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("in-view");
+          obs.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.12, rootMargin: "0px 0px -40px 0px" }
+  );
+
+  items.forEach((el, i) => {
+    el.style.transitionDelay = `${Math.min(i % 6, 5) * 60}ms`;
+    observer.observe(el);
+  });
+}
+
+/* --------------------------------------------------------------------------
+   5) DEPARTURE-BOARD STAT COUNTERS
+   -------------------------------------------------------------------------- */
+function initStatCounters() {
+  const stats = document.querySelectorAll(".stat[data-count]");
+  if (stats.length === 0) return;
+
+  const animateCount = (el) => {
+    const target = parseInt(el.getAttribute("data-count"), 10) || 0;
+    const suffix = el.getAttribute("data-suffix") || "";
+    const numEl = el.querySelector(".stat__num");
+    const duration = 1400;
+    const start = performance.now();
+
+    const tick = (now) => {
+      const progress = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      const value = Math.round(target * eased);
+      numEl.textContent = value.toLocaleString("en-IN") + suffix;
+      if (progress < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  };
+
+  if (!("IntersectionObserver" in window)) {
+    stats.forEach(animateCount);
+    return;
+  }
+
+  const observer = new IntersectionObserver(
+    (entries, obs) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          animateCount(entry.target);
+          obs.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.4 }
+  );
+  stats.forEach((el) => observer.observe(el));
+}
+
+/* --------------------------------------------------------------------------
+   6) GALLERY LIGHTBOX
+   -------------------------------------------------------------------------- */
+function initLightbox() {
+  const items = Array.from(document.querySelectorAll(".gallery-item"));
+  const lightbox = document.getElementById("lightbox");
+  const imgEl = document.getElementById("lightboxImg");
+  const closeBtn = document.getElementById("lightboxClose");
+  const prevBtn = document.getElementById("lightboxPrev");
+  const nextBtn = document.getElementById("lightboxNext");
+  if (items.length === 0 || !lightbox) return;
+
+  let index = 0;
+
+  const show = (i) => {
+    index = (i + items.length) % items.length;
+    const item = items[index];
+    imgEl.src = item.getAttribute("data-full") || item.querySelector("img").src;
+    imgEl.alt = item.querySelector("img").alt || "";
+  };
+
+  const open = (i) => {
+    show(i);
+    lightbox.classList.add("open");
+    lightbox.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+  };
+  const close = () => {
+    lightbox.classList.remove("open");
+    lightbox.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+  };
+
+  items.forEach((item, i) =>
+    item.addEventListener("click", () => open(i))
+  );
+  closeBtn?.addEventListener("click", close);
+  prevBtn?.addEventListener("click", () => show(index - 1));
+  nextBtn?.addEventListener("click", () => show(index + 1));
+  lightbox.addEventListener("click", (e) => {
+    if (e.target === lightbox) close();
+  });
+  document.addEventListener("keydown", (e) => {
+    if (!lightbox.classList.contains("open")) return;
+    if (e.key === "Escape") close();
+    if (e.key === "ArrowLeft") show(index - 1);
+    if (e.key === "ArrowRight") show(index + 1);
+  });
+}
+
+/* --------------------------------------------------------------------------
+   7) MISC: footer year
+   -------------------------------------------------------------------------- */
+function initFooterYear() {
+  const el = document.getElementById("year");
+  if (el) el.textContent = new Date().getFullYear();
+}
+
+/* --------------------------------------------------------------------------
+   INIT
+   -------------------------------------------------------------------------- */
+document.addEventListener("DOMContentLoaded", () => {
+  initWhatsAppButtons();
+  initNavbarScroll();
+  initActiveNavLink();
+  initMobileMenu();
+  initScrollReveal();
+  initStatCounters();
+  initLightbox();
+  initFooterYear();
+});
+
+</script>
+</body>
+</html>
