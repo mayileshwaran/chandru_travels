@@ -203,9 +203,10 @@ section{ scroll-margin-top: var(--nav-h); }
 /* ============== HERO ============== */
 .hero{ position:relative; min-height:100vh; display:flex; align-items:center; overflow:hidden; color:#fff; }
 .hero__bg{
-  position:absolute; inset:0; background-size:cover; background-position:center;
+  position:absolute; inset:0; overflow:hidden;
   transform:scale(1.06);
 }
+.hero__bg svg{ width:100%; height:100%; display:block; }
 .hero__overlay{
   position:absolute; inset:0;
   background:
@@ -369,6 +370,61 @@ section{ scroll-margin-top: var(--nav-h); }
 .lightbox__nav--prev{ left:16px; top:50%; transform:translateY(-50%); }
 .lightbox__nav--next{ right:16px; top:50%; transform:translateY(-50%); }
 
+/* ============== BOOKING MODAL ============== */
+.booking-modal{
+  position:fixed; inset:0; z-index:2200; visibility:hidden;
+}
+.booking-modal__backdrop{
+  position:absolute; inset:0; background:rgba(11,37,69,.6); opacity:0; transition:opacity .3s ease;
+}
+.booking-modal__panel{
+  position:relative; z-index:1; width:min(520px,92vw); max-height:88vh; overflow-y:auto;
+  margin:6vh auto 0; background:#fff; border-radius:var(--radius-lg); box-shadow:var(--shadow-lg);
+  padding:2rem 1.9rem 1.9rem; opacity:0; transform:translateY(24px) scale(.98);
+  transition:opacity .3s ease, transform .3s ease;
+}
+.booking-modal.open{ visibility:visible; }
+.booking-modal.open .booking-modal__backdrop{ opacity:1; }
+.booking-modal.open .booking-modal__panel{ opacity:1; transform:translateY(0) scale(1); }
+
+.booking-modal__top{ display:flex; align-items:flex-start; justify-content:space-between; gap:1rem; margin-bottom:.3rem; }
+.booking-modal__title{ font-size:1.35rem; margin-bottom:.2rem; }
+.booking-modal__subtitle{ color:var(--gray); font-size:.92rem; margin:0; }
+.booking-modal__close{
+  flex:none; width:38px; height:38px; border-radius:10px; background:var(--sky); border:none;
+  color:var(--navy); font-size:1rem; display:flex; align-items:center; justify-content:center;
+}
+.booking-modal__close:hover{ background:var(--sky-2); }
+
+.booking-modal__context{
+  display:flex; align-items:center; gap:.6rem; background:var(--sky); border-radius:var(--radius-sm);
+  padding:.7rem .9rem; margin:1.2rem 0 .4rem; font-size:.88rem; color:var(--blue); font-weight:600;
+}
+.booking-modal__context i{ color:var(--gold-dark); }
+
+.booking-form{ margin-top:1rem; display:flex; flex-direction:column; gap:1.1rem; }
+.booking-form__row{ display:grid; grid-template-columns:1fr; gap:1.1rem; }
+@media (min-width:520px){ .booking-form__row{ grid-template-columns:1fr 1fr; } }
+
+.booking-form__field{ display:flex; flex-direction:column; gap:.4rem; }
+.booking-form__field label{ font-size:.85rem; font-weight:600; color:var(--navy); }
+.booking-form__field label .req{ color:var(--gold-dark); }
+.booking-form__field input,
+.booking-form__field textarea{
+  font-family:var(--font-body); font-size:.95rem; color:var(--ink);
+  border:1.5px solid var(--sky-2); border-radius:var(--radius-sm); padding:.75rem .9rem;
+  background:var(--sky); transition:border-color .2s ease, background .2s ease;
+}
+.booking-form__field input:focus,
+.booking-form__field textarea:focus{ outline:none; border-color:var(--blue); background:#fff; }
+.booking-form__field textarea{ resize:vertical; min-height:80px; }
+.booking-form__hint{ font-size:.78rem; color:var(--gray-light); }
+.booking-form__actions{ margin-top:.3rem; }
+.booking-form__note{
+  display:flex; align-items:center; gap:.5rem; font-size:.8rem; color:var(--gray); margin-top:.2rem;
+}
+.booking-form__note i{ color:var(--whatsapp); }
+
 /* ============== TESTIMONIALS ============== */
 .review{
   background:#fff; border-radius:var(--radius-md); padding:2rem 1.8rem; box-shadow:var(--shadow-sm);
@@ -531,7 +587,7 @@ section{ scroll-margin-top: var(--nav-h); }
       <a href="#gallery" class="offcanvas__link">Gallery</a>
       <a href="#contact" class="offcanvas__link">Contact</a>
     </nav>
-    <a href="#" class="btn btn--primary btn--block js-wa" data-msg="Hello Chandru Travels, I would like to book a travel service.">
+    <a href="#" class="btn btn--primary btn--block js-book" data-msg="Hello Chandru Travels, I would like to book a travel service.">
       <i class="fa-brands fa-whatsapp"></i> Book Now on WhatsApp
     </a>
     <div class="offcanvas__contact">
@@ -544,7 +600,86 @@ section{ scroll-margin-top: var(--nav-h); }
 
   <!-- ============ HERO ============ -->
   <section class="hero" id="home">
-    <div class="hero__bg" style="background-image:url('https://loremflickr.com/1920/1200/roadtrip,mountains,travel/all?lock=101')"></div>
+    <div class="hero__bg">
+      <svg viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+        <defs>
+          <linearGradient id="heroSky" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#08152B"/>
+            <stop offset="55%" stop-color="#123566"/>
+            <stop offset="100%" stop-color="#145DA0"/>
+          </linearGradient>
+          <radialGradient id="heroSun" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#F2A93B" stop-opacity="0.9"/>
+            <stop offset="60%" stop-color="#F2A93B" stop-opacity="0.25"/>
+            <stop offset="100%" stop-color="#F2A93B" stop-opacity="0"/>
+          </radialGradient>
+          <linearGradient id="heroRoad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#EAF4FC" stop-opacity=".92"/>
+            <stop offset="100%" stop-color="#EAF4FC" stop-opacity=".55"/>
+          </linearGradient>
+        </defs>
+
+        <rect width="1600" height="900" fill="url(#heroSky)"/>
+
+        <g fill="#EAF4FC" opacity="0.55">
+          <circle cx="160" cy="90" r="2.4"/>
+          <circle cx="260" cy="60" r="1.8"/>
+          <circle cx="120" cy="150" r="1.6"/>
+          <circle cx="1420" cy="80" r="2.2"/>
+          <circle cx="1500" cy="150" r="1.6"/>
+          <circle cx="1350" cy="110" r="1.8"/>
+          <circle cx="700" cy="70" r="1.6"/>
+          <circle cx="980" cy="100" r="1.8"/>
+        </g>
+
+        <circle cx="820" cy="480" r="280" fill="url(#heroSun)"/>
+        <circle cx="820" cy="480" r="66" fill="#F2A93B" opacity="0.9"/>
+
+        <g stroke="#EAF4FC" stroke-width="4" fill="none" stroke-linecap="round" opacity="0.65">
+          <path d="M220,180 q18,-20 36,0 q18,-20 36,0"/>
+          <path d="M300,230 q14,-16 28,0 q14,-16 28,0"/>
+          <path d="M1280,150 q16,-18 32,0 q16,-18 32,0"/>
+        </g>
+
+        <path d="M0,560 C120,500 220,540 340,500 C460,460 560,520 680,480 C800,440 900,500 1020,470 C1140,440 1260,500 1380,470 C1460,450 1540,470 1600,460 L1600,900 L0,900 Z" fill="#123566" opacity="0.55"/>
+
+        <path d="M0,640 C140,590 260,620 400,580 C540,540 640,610 780,570 C920,530 1020,600 1160,570 C1300,540 1420,600 1600,570 L1600,900 L0,900 Z" fill="#0B2545" opacity="0.8"/>
+
+        <g stroke="#2E86DE" stroke-width="2" opacity="0.2">
+          <path d="M0,760 C200,740 400,760 600,745" fill="none"/>
+          <path d="M0,790 C220,772 420,792 640,775" fill="none"/>
+          <path d="M960,780 C1160,760 1360,780 1600,762" fill="none"/>
+          <path d="M980,812 C1180,794 1380,814 1600,797" fill="none"/>
+        </g>
+
+        <path d="M0,760 C220,700 420,740 600,700 C700,678 720,690 760,678 C800,666 830,655 840,660 C880,678 920,690 1000,700 C1180,740 1380,700 1600,760 L1600,900 L0,900 Z" fill="#0B2545"/>
+
+        <path d="M540,900 C600,780 690,715 760,660 C790,635 810,635 840,660 C910,715 1000,780 1060,900 Z" fill="url(#heroRoad)"/>
+
+        <path d="M540,900 C600,780 690,715 760,660" fill="none" stroke="#0B2545" stroke-width="4" opacity="0.4"/>
+        <path d="M1060,900 C1000,780 910,715 840,660" fill="none" stroke="#0B2545" stroke-width="4" opacity="0.4"/>
+
+        <path d="M800,900 C800,780 800,720 800,660" fill="none" stroke="#F2A93B" stroke-width="7" stroke-dasharray="28 24" opacity="0.9"/>
+
+        <g transform="translate(800,795)">
+          <ellipse cx="0" cy="34" rx="46" ry="8" fill="#08152B" opacity="0.35"/>
+          <rect x="-42" y="-14" width="84" height="40" rx="10" fill="#F2A93B"/>
+          <rect x="-32" y="-30" width="52" height="22" rx="8" fill="#EAF4FC"/>
+          <rect x="-24" y="-24" width="16" height="14" rx="2" fill="#145DA0" opacity="0.6"/>
+          <rect x="-2" y="-24" width="16" height="14" rx="2" fill="#145DA0" opacity="0.6"/>
+          <circle cx="-24" cy="26" r="9" fill="#08152B"/>
+          <circle cx="24" cy="26" r="9" fill="#08152B"/>
+          <rect x="38" y="-3" width="10" height="10" rx="2" fill="#D98E1E"/>
+        </g>
+
+        <g transform="translate(800,678) scale(0.42)">
+          <rect x="-42" y="-14" width="84" height="40" rx="10" fill="#EAF4FC" opacity="0.9"/>
+          <rect x="-32" y="-30" width="52" height="22" rx="8" fill="#EAF4FC"/>
+          <circle cx="-24" cy="26" r="9" fill="#08152B"/>
+          <circle cx="24" cy="26" r="9" fill="#08152B"/>
+        </g>
+      </svg>
+    </div>
     <div class="hero__overlay"></div>
     <div class="container hero__inner">
       <p class="eyebrow eyebrow--light reveal">Chandru Travels &middot; Trusted Since 2013</p>
@@ -625,7 +760,7 @@ section{ scroll-margin-top: var(--nav-h); }
       <div class="section__head">
         <p class="eyebrow reveal">Our Services</p>
         <h2 class="section__title reveal">Everything you need, <br>for every kind of trip</h2>
-        <p class="section__lead reveal">Pick a service below and book it directly on WhatsApp — no forms, no waiting.</p>
+        <p class="section__lead reveal">Pick a service below, share a few trip details, and we'll pick it up on WhatsApp.</p>
       </div>
 
       <div class="grid grid--4">
@@ -634,56 +769,56 @@ section{ scroll-margin-top: var(--nav-h); }
           <div class="card-service__icon"><i class="fa-solid fa-map-location-dot"></i></div>
           <h3>Tour Packages</h3>
           <p>All-inclusive holiday packages covering stay, sightseeing and travel, planned end-to-end.</p>
-          <a href="#" class="card-service__link js-wa" data-msg="Hello Chandru Travels, I'm interested in your Tour Packages.">Book Now <i class="fa-solid fa-arrow-right"></i></a>
+          <a href="#" class="card-service__link js-book" data-msg="Hello Chandru Travels, I'm interested in your Tour Packages.">Book Now <i class="fa-solid fa-arrow-right"></i></a>
         </article>
 
         <article class="card-service reveal">
           <div class="card-service__icon"><i class="fa-solid fa-people-roof"></i></div>
           <h3>Family Trips</h3>
           <p>Comfortable, kid- and elder-friendly journeys with flexible stops at a pace that suits everyone.</p>
-          <a href="#" class="card-service__link js-wa" data-msg="Hello Chandru Travels, I'm interested in booking a Family Trip.">Book Now <i class="fa-solid fa-arrow-right"></i></a>
+          <a href="#" class="card-service__link js-book" data-msg="Hello Chandru Travels, I'm interested in booking a Family Trip.">Book Now <i class="fa-solid fa-arrow-right"></i></a>
         </article>
 
         <article class="card-service reveal">
           <div class="card-service__icon"><i class="fa-solid fa-briefcase"></i></div>
           <h3>Corporate Travel</h3>
           <p>Dependable transport for business trips, team outings and corporate events, always on schedule.</p>
-          <a href="#" class="card-service__link js-wa" data-msg="Hello Chandru Travels, I'm interested in Corporate Travel services.">Book Now <i class="fa-solid fa-arrow-right"></i></a>
+          <a href="#" class="card-service__link js-book" data-msg="Hello Chandru Travels, I'm interested in Corporate Travel services.">Book Now <i class="fa-solid fa-arrow-right"></i></a>
         </article>
 
         <article class="card-service reveal">
           <div class="card-service__icon"><i class="fa-solid fa-road"></i></div>
           <h3>Outstation Travel</h3>
           <p>Safe, well-maintained vehicles for long-distance trips between cities with drivers who know the routes.</p>
-          <a href="#" class="card-service__link js-wa" data-msg="Hello Chandru Travels, I'm interested in Outstation Travel.">Book Now <i class="fa-solid fa-arrow-right"></i></a>
+          <a href="#" class="card-service__link js-book" data-msg="Hello Chandru Travels, I'm interested in Outstation Travel.">Book Now <i class="fa-solid fa-arrow-right"></i></a>
         </article>
 
         <article class="card-service reveal">
           <div class="card-service__icon"><i class="fa-solid fa-city"></i></div>
           <h3>Local Travel</h3>
           <p>Convenient point-to-point rides within the city for errands, events or short visits.</p>
-          <a href="#" class="card-service__link js-wa" data-msg="Hello Chandru Travels, I'm interested in Local Travel.">Book Now <i class="fa-solid fa-arrow-right"></i></a>
+          <a href="#" class="card-service__link js-book" data-msg="Hello Chandru Travels, I'm interested in Local Travel.">Book Now <i class="fa-solid fa-arrow-right"></i></a>
         </article>
 
         <article class="card-service reveal">
           <div class="card-service__icon"><i class="fa-solid fa-plane-arrival"></i></div>
           <h3>Airport Transfers</h3>
           <p>On-time pickups and drop-offs, so you're never rushing to catch a flight.</p>
-          <a href="#" class="card-service__link js-wa" data-msg="Hello Chandru Travels, I'm interested in Airport Transfers.">Book Now <i class="fa-solid fa-arrow-right"></i></a>
+          <a href="#" class="card-service__link js-book" data-msg="Hello Chandru Travels, I'm interested in Airport Transfers.">Book Now <i class="fa-solid fa-arrow-right"></i></a>
         </article>
 
         <article class="card-service reveal">
           <div class="card-service__icon"><i class="fa-solid fa-users"></i></div>
           <h3>Group Tours</h3>
           <p>Spacious vehicles and organised itineraries for college trips, friend groups and large gatherings.</p>
-          <a href="#" class="card-service__link js-wa" data-msg="Hello Chandru Travels, I'm interested in a Group Tour.">Book Now <i class="fa-solid fa-arrow-right"></i></a>
+          <a href="#" class="card-service__link js-book" data-msg="Hello Chandru Travels, I'm interested in a Group Tour.">Book Now <i class="fa-solid fa-arrow-right"></i></a>
         </article>
 
         <article class="card-service reveal">
           <div class="card-service__icon"><i class="fa-solid fa-route"></i></div>
           <h3>Customized Trips</h3>
           <p>Tell us where you want to go — we'll build a route and schedule made just for you.</p>
-          <a href="#" class="card-service__link js-wa" data-msg="Hello Chandru Travels, I'd like a Customized Trip plan.">Book Now <i class="fa-solid fa-arrow-right"></i></a>
+          <a href="#" class="card-service__link js-book" data-msg="Hello Chandru Travels, I'd like a Customized Trip plan.">Book Now <i class="fa-solid fa-arrow-right"></i></a>
         </article>
 
       </div>
@@ -756,7 +891,7 @@ section{ scroll-margin-top: var(--nav-h); }
             <p>Rolling tea estates, misty hills and a toy-train ride through the Nilgiris.</p>
             <div class="ticket__meta">
               
-              <a href="#" class="btn btn--sm btn--primary js-wa" data-msg="Hello Chandru Travels, I'd like to book the Ooty tour.">Book Now</a>
+              <a href="#" class="btn btn--sm btn--primary js-book" data-msg="Hello Chandru Travels, I'd like to book the Ooty tour.">Book Now</a>
             </div>
           </div>
         </article>
@@ -769,7 +904,7 @@ section{ scroll-margin-top: var(--nav-h); }
             <p>Emerald tea gardens and cool hill air in Kerala's most scenic hill station.</p>
             <div class="ticket__meta">
              
-              <a href="#" class="btn btn--sm btn--primary js-wa" data-msg="Hello Chandru Travels, I'd like to book the Munnar tour.">Book Now</a>
+              <a href="#" class="btn btn--sm btn--primary js-book" data-msg="Hello Chandru Travels, I'd like to book the Munnar tour.">Book Now</a>
             </div>
           </div>
         </article>
@@ -782,7 +917,7 @@ section{ scroll-margin-top: var(--nav-h); }
             <p>Pine forests, a star-shaped lake and quiet viewpoints above the clouds.</p>
             <div class="ticket__meta">
              
-              <a href="#" class="btn btn--sm btn--primary js-wa" data-msg="Hello Chandru Travels, I'd like to book the Kodaikanal tour.">Book Now</a>
+              <a href="#" class="btn btn--sm btn--primary js-book" data-msg="Hello Chandru Travels, I'd like to book the Kodaikanal tour.">Book Now</a>
             </div>
           </div>
         </article>
@@ -795,7 +930,7 @@ section{ scroll-margin-top: var(--nav-h); }
             <p>Where three seas meet — sunrise and sunset from the very same shore.</p>
             <div class="ticket__meta">
             
-              <a href="#" class="btn btn--sm btn--primary js-wa" data-msg="Hello Chandru Travels, I'd like to book the Kanyakumari trip.">Book Now</a>
+              <a href="#" class="btn btn--sm btn--primary js-book" data-msg="Hello Chandru Travels, I'd like to book the Kanyakumari trip.">Book Now</a>
             </div>
           </div>
         </article>
@@ -808,7 +943,7 @@ section{ scroll-margin-top: var(--nav-h); }
             <p>A sacred island town with temple spires and a bridge that stretches over the sea.</p>
             <div class="ticket__meta">
              
-              <a href="#" class="btn btn--sm btn--primary js-wa" data-msg="Hello Chandru Travels, I'd like to book the Rameshwaram tour.">Book Now</a>
+              <a href="#" class="btn btn--sm btn--primary js-book" data-msg="Hello Chandru Travels, I'd like to book the Rameshwaram tour.">Book Now</a>
             </div>
           </div>
         </article>
@@ -821,7 +956,7 @@ section{ scroll-margin-top: var(--nav-h); }
             <p>French-quarter streets, seaside promenades and a slower, colourful pace of life.</p>
             <div class="ticket__meta">
              
-              <a href="#" class="btn btn--sm btn--primary js-wa" data-msg="Hello Chandru Travels, I'd like to book the Pondicherry tour.">Book Now</a>
+              <a href="#" class="btn btn--sm btn--primary js-book" data-msg="Hello Chandru Travels, I'd like to book the Pondicherry tour.">Book Now</a>
             </div>
           </div>
         </article>
@@ -834,7 +969,7 @@ section{ scroll-margin-top: var(--nav-h); }
             <p>Houseboats drifting through Kerala's palm-lined canals and calm backwaters.</p>
             <div class="ticket__meta">
               
-              <a href="#" class="btn btn--sm btn--primary js-wa" data-msg="Hello Chandru Travels, I'd like to book the Alleppey Backwaters tour.">Book Now</a>
+              <a href="#" class="btn btn--sm btn--primary js-book" data-msg="Hello Chandru Travels, I'd like to book the Alleppey Backwaters tour.">Book Now</a>
             </div>
           </div>
         </article>
@@ -843,11 +978,11 @@ section{ scroll-margin-top: var(--nav-h); }
           <div class="ticket__img"><img src="./img/varkala.jpg" alt="Houseboat on Alleppey backwaters, Kerala" loading="lazy" width="700" height="500"></div>
           <div class="ticket__perf" aria-hidden="true"></div>
           <div class="ticket__body">
-            <h3>varkala</h3>
+            <h3>Varkala</h3>
             <p>Varkala is a popular coastal town in Kerala famous for its stunning red cliffs that overlook the Arabian Sea.</p>
             <div class="ticket__meta">
               
-              <a href="#" class="btn btn--sm btn--primary js-wa" data-msg="Hello Chandru Travels, I'd like to book the Alleppey Backwaters tour.">Book Now</a>
+              <a href="#" class="btn btn--sm btn--primary js-book" data-msg="Hello Chandru Travels, I'd like to book the Varkala tour.">Book Now</a>
             </div>
           </div>
         </article>
@@ -975,7 +1110,7 @@ section{ scroll-margin-top: var(--nav-h); }
       <div class="section__head">
         <p class="eyebrow reveal">Contact Us</p>
         <h2 class="section__title reveal">Let's plan your next trip</h2>
-        <p class="section__lead reveal">No forms to fill — just reach out directly and we'll take it from there.</p>
+        <p class="section__lead reveal">Reach out directly, or hit Book Now for a quick trip request — either way, we'll take it from there.</p>
       </div>
 
       <div class="contact-grid">
@@ -1011,7 +1146,7 @@ section{ scroll-margin-top: var(--nav-h); }
         <a href="#" class="btn btn--whatsapp btn--lg js-wa" data-msg="Hello Chandru Travels, I have a question about your services.">
           <i class="fa-brands fa-whatsapp"></i> WhatsApp Us
         </a>
-        <a href="#" class="btn btn--primary btn--lg js-wa" data-msg="Hello Chandru Travels, I would like to book a travel service.">
+        <a href="#" class="btn btn--primary btn--lg js-book" data-msg="Hello Chandru Travels, I would like to book a travel service.">
           Book Now
         </a>
       </div>
@@ -1026,7 +1161,7 @@ section{ scroll-margin-top: var(--nav-h); }
     <div class="container final-cta__inner reveal">
       <h2>Ready for Your Next Journey?</h2>
       <p>Travel comfortably and confidently with Chandru Travels.</p>
-      <a href="#" class="btn btn--gold btn--lg js-wa" data-msg="Hello Chandru Travels, I'm ready to book my trip!">
+      <a href="#" class="btn btn--gold btn--lg js-book" data-msg="Hello Chandru Travels, I'm ready to book my trip!">
         Book Your Trip on WhatsApp <i class="fa-brands fa-whatsapp"></i>
       </a>
     </div>
@@ -1041,10 +1176,9 @@ section{ scroll-margin-top: var(--nav-h); }
       <span class="brand__text brand__text--light">Chandru<em>Travels</em></span>
       <p>Comfortable, reliable travel since 2013 &mdash; tour packages, family trips, corporate travel and more, booked in one message.</p>
       <div class="footer__social">
-        <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-        <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-        <a href="#" aria-label="Twitter / X"><i class="fa-brands fa-x-twitter"></i></a>
-        <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+        <a href="#" class="js-wa" data-msg="Hello Chandru Travels, I would like to book a travel service." aria-label="Chat on WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+        <a href="tel:+919087137006" aria-label="Call us"><i class="fa-solid fa-phone"></i></a>
+        <a href="mailto:alagurajaa54@gmail.com" aria-label="Email us"><i class="fa-solid fa-envelope"></i></a>
       </div>
     </div>
 
@@ -1088,6 +1222,73 @@ section{ scroll-margin-top: var(--nav-h); }
   <span class="floating-wa__ring" aria-hidden="true"></span>
 </a>
 
+<!-- ============ BOOKING MODAL ============ -->
+<div class="booking-modal" id="bookingModal" aria-hidden="true">
+  <div class="booking-modal__backdrop" id="bookingModalBackdrop"></div>
+  <div class="booking-modal__panel" role="dialog" aria-modal="true" aria-labelledby="bookingModalTitle">
+    <div class="booking-modal__top">
+      <div>
+        <h3 class="booking-modal__title" id="bookingModalTitle">Plan Your Trip</h3>
+        <p class="booking-modal__subtitle">Fill in a few details and we'll pick it up on WhatsApp.</p>
+      </div>
+      <button type="button" class="booking-modal__close" id="bookingModalClose" aria-label="Close booking form">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+
+    <div class="booking-modal__context" id="bookingModalContext">
+      <i class="fa-solid fa-map-location-dot" aria-hidden="true"></i>
+      <span id="bookingModalContextText">General enquiry</span>
+    </div>
+
+    <form class="booking-form" id="bookingForm" novalidate>
+      <div class="booking-form__field">
+        <label for="bookName">Your Name <span class="req">*</span></label>
+        <input type="text" id="bookName" name="name" placeholder="Full name" autocomplete="name" required>
+      </div>
+
+      <div class="booking-form__field">
+        <label for="bookPhone">Phone Number <span class="req">*</span></label>
+        <input type="tel" id="bookPhone" name="phone" placeholder="e.g. 98765 43210" autocomplete="tel" required>
+      </div>
+
+      <div class="booking-form__row">
+        <div class="booking-form__field">
+          <label for="bookStartDate">Trip Start Date <span class="req">*</span></label>
+          <input type="date" id="bookStartDate" name="startDate" required>
+        </div>
+        <div class="booking-form__field">
+          <label for="bookEndDate">Trip End Date <span class="req">*</span></label>
+          <input type="date" id="bookEndDate" name="endDate" required>
+        </div>
+      </div>
+
+      <div class="booking-form__row">
+        <div class="booking-form__field">
+          <label for="bookPickup">Pickup Point <span class="req">*</span></label>
+          <input type="text" id="bookPickup" name="pickup" placeholder="e.g. Paravai, Madurai" autocomplete="address-level2" required>
+        </div>
+        <div class="booking-form__field">
+          <label for="bookMembers">No. of Members <span class="req">*</span></label>
+          <input type="number" id="bookMembers" name="members" placeholder="e.g. 4" min="1" max="100" step="1" inputmode="numeric" required>
+        </div>
+      </div>
+
+      <div class="booking-form__field">
+        <label for="bookNotes">Additional Notes</label>
+        <textarea id="bookNotes" name="notes" placeholder="Anything else we should know"></textarea>
+      </div>
+
+      <div class="booking-form__actions">
+        <button type="submit" class="btn btn--whatsapp btn--block btn--lg">
+          <i class="fa-brands fa-whatsapp"></i> Continue on WhatsApp
+        </button>
+        <p class="booking-form__note"><i class="fa-solid fa-lock"></i> Your details are only sent to us via WhatsApp — nothing is stored on this site.</p>
+      </div>
+    </form>
+  </div>
+</div>
+
 <script>
 /* ==========================================================================
    CHANDRU TRAVELS — SITE SCRIPT
@@ -1117,6 +1318,122 @@ function initWhatsAppButtons() {
     el.setAttribute("href", buildWhatsAppLink(message));
     el.setAttribute("target", "_blank");
     el.setAttribute("rel", "noopener noreferrer");
+  });
+}
+
+/* --------------------------------------------------------------------------
+   1b) BOOKING MODAL
+   Every "Book Now" style button (class="js-book") opens this form instead of
+   jumping straight to WhatsApp. Whatever the visitor fills in — name, phone,
+   trip start/end dates, notes — plus the context of which button they clicked
+   (e.g. "Ooty tour", "Corporate Travel") is assembled into one message and
+   THAT is what gets pushed to WhatsApp on submit.
+   -------------------------------------------------------------------------- */
+function initBookingModal() {
+  const modal = document.getElementById("bookingModal");
+  const backdrop = document.getElementById("bookingModalBackdrop");
+  const closeBtn = document.getElementById("bookingModalClose");
+  const contextText = document.getElementById("bookingModalContextText");
+  const form = document.getElementById("bookingForm");
+  if (!modal || !form) return;
+
+  const nameEl = document.getElementById("bookName");
+  const phoneEl = document.getElementById("bookPhone");
+  const startEl = document.getElementById("bookStartDate");
+  const endEl = document.getElementById("bookEndDate");
+  const pickupEl = document.getElementById("bookPickup");
+  const membersEl = document.getElementById("bookMembers");
+  const notesEl = document.getElementById("bookNotes");
+
+  let currentContext = DEFAULT_WHATSAPP_MESSAGE;
+
+  const todayISO = () => new Date().toISOString().split("T")[0];
+
+  const open = (contextMessage) => {
+    currentContext = contextMessage || DEFAULT_WHATSAPP_MESSAGE;
+    contextText.textContent = currentContext;
+
+    const min = todayISO();
+    startEl.min = min;
+    endEl.min = min;
+
+    modal.classList.add("open");
+    modal.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+    setTimeout(() => nameEl?.focus(), 200);
+  };
+
+  const close = () => {
+    modal.classList.remove("open");
+    modal.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+  };
+
+  // Wire up every "Book Now" trigger on the page
+  document.querySelectorAll(".js-book").forEach((el) => {
+    el.addEventListener("click", (e) => {
+      e.preventDefault();
+      open(el.getAttribute("data-msg"));
+    });
+  });
+
+  closeBtn?.addEventListener("click", close);
+  backdrop?.addEventListener("click", close);
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && modal.classList.contains("open")) close();
+  });
+
+  // Keep end-date always >= start-date
+  startEl.addEventListener("change", () => {
+    endEl.min = startEl.value || todayISO();
+    if (endEl.value && endEl.value < endEl.min) endEl.value = endEl.min;
+  });
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const name = nameEl.value.trim();
+    const phone = phoneEl.value.trim();
+    const startDate = startEl.value;
+    const endDate = endEl.value;
+    const pickup = pickupEl.value.trim();
+    const members = membersEl.value.trim();
+    const notes = notesEl.value.trim();
+
+    if (!name || !phone || !startDate || !endDate || !pickup || !members) {
+      form.reportValidity();
+      return;
+    }
+    if (endDate < startDate) {
+      endEl.setCustomValidity("Trip end date can't be before the start date.");
+      form.reportValidity();
+      endEl.setCustomValidity("");
+      return;
+    }
+
+    const formatDate = (iso) =>
+      new Date(iso + "T00:00:00").toLocaleDateString("en-IN", {
+        day: "numeric", month: "short", year: "numeric",
+      });
+
+    // Build the full WhatsApp message from everything the visitor entered
+    const lines = [
+      currentContext,
+      "",
+      `Name: ${name}`,
+      `Phone: ${phone}`,
+      `Trip Dates: ${formatDate(startDate)} to ${formatDate(endDate)}`,
+      `Pickup Point: ${pickup}`,
+      `No. of Members: ${members}`,
+    ];
+    if (notes) lines.push(`Notes: ${notes}`);
+
+    const finalMessage = lines.join("\n");
+
+    window.open(buildWhatsAppLink(finalMessage), "_blank", "noopener,noreferrer");
+
+    close();
+    form.reset();
   });
 }
 
@@ -1329,6 +1646,7 @@ function initFooterYear() {
    -------------------------------------------------------------------------- */
 document.addEventListener("DOMContentLoaded", () => {
   initWhatsAppButtons();
+  initBookingModal();
   initNavbarScroll();
   initActiveNavLink();
   initMobileMenu();
