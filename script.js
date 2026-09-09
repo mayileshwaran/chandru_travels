@@ -1,6 +1,6 @@
 
 /* ==========================================================================
-   CHANDRU TRAVELS — SITE SCRIPT
+   madurai chandru travels — SITE SCRIPT
    ========================================================================== */
 
 /* --------------------------------------------------------------------------
@@ -12,7 +12,7 @@
 const WHATSAPP_NUMBER = "919087137006"; // TODO: replace with the real business number
 
 const DEFAULT_WHATSAPP_MESSAGE =
-  "Hello Chandru Travels, I would like to book a travel service.";
+  "Hello madurai chandru travels, I would like to book a travel service.";
 
 function buildWhatsAppLink(message) {
   const text = encodeURIComponent(message || DEFAULT_WHATSAPP_MESSAGE);
